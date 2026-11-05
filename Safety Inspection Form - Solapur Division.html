@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://safetyinspectionform.netlify.app/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safety Inspection Form - Solapur Division</title>
+  <script src="./Safety Inspection Form - Solapur Division_files/pica.min.js.download"></script>
+  <script src="./Safety Inspection Form - Solapur Division_files/jspdf.umd.min.js.download"></script>
+  <link rel="stylesheet" href="./Safety Inspection Form - Solapur Division_files/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Playfair Display', 'Times New Roman', 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: #fff;
+      overflow-x: hidden;
+      background-size: 400% 400%;
+      background-attachment: fixed;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px 80px;
+      animation: fadeIn 1.5s ease;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,0,127,0.25), transparent 45%),
+        linear-gradient(
+          135deg,
+          #0099ff,
+          #4b3cff,
+          #8a2be2,
+          #ff007f
+        );
+    }
+    p{ color: #4A148C; }
+ 
+   .section {
+      width: 95%;
+      max-width: 620px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      padding: 32px 36px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(6px);
+      margin: 20px auto 25px;
+      animation: fadeInUp 1s ease;
+      box-sizing: border-box;
+    }
+    @media (max-width: 600px) {
+      .section {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px 18px;
+        border-radius: 14px;
+        margin-bottom: 18px;
+      }
+    }
+    h2, h3 { color: #6a11cb; margin-bottom: 15px; animation: slideInLeft 1s ease; }
+    label { display: block; margin: 14px 0 6px; font-weight: 600; color: #4A148C; text-shadow: 0 0 2px rgba(255, 255, 255, 0.7);}
+    input:focus, select:focus, textarea:focus { border-color: #6A11CB; outline: none; box-shadow: 0 0 6px rgba(106, 17, 203, 0.7); }
+    input, select, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 16px;
+      margin-top: 6px;
+      margin-bottom: 14px;
+      border: 1.5px solid #B388FF;
+      border-radius: 10px;
+      font-size: 15px;
+      color: #000;
+      background: #fff;
+      opacity: 1;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+      max-height: 220px;
+      line-height: 1.5;
+      transition: height 0.2s ease;
+      overflow: hidden;
+    }
+    select {
+      background-image:
+        linear-gradient(45deg, transparent 50%, #6a11cb 50%),
+        linear-gradient(135deg, #6a11cb 50%, transparent 50%);
+      background-position:
+        calc(100% - 20px) calc(50% - 4px),
+        calc(100% - 15px) calc(50% - 4px);
+      background-size: 6px 6px;
+      background-repeat: no-repeat;
+    }
+    @media (max-width: 600px) {
+      input, select, textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+        border-radius: 12px;
+      }
+    }
+    button {
+      font-family: 'Playfair Display', 'Times New Roman', 'Roboto', sans-serif;
+      padding: 12px 24px;
+      margin: 8px 5px;
+      background: linear-gradient(90deg, #6A11CB, #8E2DE2);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    button:active { transform: translateY(1px); }
+    button:hover {
+      background: linear-gradient(90deg, #8E2DE2, #6A11CB);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(106, 17, 203, 0.4);
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    #errorMessage { color: #c62828; text-align: center; font-weight: bold; margin: 15px 0; padding: 10px; background: #ffebee; border-radius: 8px; }
+    #loading { display: none; text-align: center; padding: 20px; font-size: 18px; color:#fff; font-weight: bold; }
+    #loading.active { display: block; }
+    #photoContainer { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+    .photo-preview { position: relative; width: 100px; height: 100px; border: 2px solid #bbdefb; border-radius: 10px; overflow: hidden; }
+    .photo-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .remove-photo { position: absolute; top: 4px; right: 4px; background: #d32f2f; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; }
+    .hidden { display: none; }
+    .inspection-title {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: 'Playfair Display','Times New Roman', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      animation: zoomIn 1.2s ease;
+      margin: 10px auto 30px;
+    }
+    .inspection-title img { height: 42px; width: auto; }
+    @media (max-width: 600px) {
+      .inspection-title { font-size: 22px; }
+      .inspection-title img { height: 34px; }
+    }
+    .footer-credit {
+      text-align:center;
+      font-family:'Playfair Display','Times New Roman',sans-serif;
+      font-weight:bold;
+      font-size:18px;
+      color:#b71c1c;
+      background:#ffffff;
+      padding:12px 30px;
+      border-radius:30px;
+      display:inline-block;
+      margin:30px 0;
+      border:2px solid #b71c1c;
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+    .whatsapp-btn {
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#25D366;
+      color:#fff;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      box-shadow:0 8px 25px rgba(37,211,102,0.5);
+      z-index:999;
+    }
+    .whatsapp-btn:hover { transform: scale(1.05); }
+    .whatsapp-btn:active { transform: scale(0.95); }
+    .version-tag {
+      position:fixed;
+      bottom:15px;
+      left:15px;
+      color:white;
+      background:rgba(0,0,0,0.6);
+      padding:6px 14px;
+      border-radius:20px;
+      font-size:12px;
+      z-index:99;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .confirm-btn {
+      background: linear-gradient(135deg, #2E7D32, #43A047);
+      color: #ffffff;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+      animation: heartbeat 1.6s infinite;
+      box-shadow: 0 0 12px rgba(102, 187, 106, 0.6), 0 6px 18px rgba(46, 125, 50, 0.45);
+    }
+    .confirm-btn:hover {
+      background: linear-gradient(135deg, #00C853, #2E7D32);
+      box-shadow: 0 0 25px rgba(0, 200, 83, 0.9), 0 10px 28px rgba(0, 200, 83, 0.6);
+      transform: scale(1.06);
+    }
+    .confirm-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 10px rgba(0, 200, 83, 0.7);
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.08); }
+      40% { transform: scale(1); }
+      60% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+    /*WRAPPING TEXT*/
+    .deficiencies-text {
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere; /* 🔥 KEY FIX */
+  word-break: break-word;
+  word-wrap: break-word;
+  background: #f9fbe7;
+  border-left: 5px solid #d32f2f;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #4A148C;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/*FOR ACTION BY */
+/* ACTION BY MODERN DESIGN */
+
+.action-by-checkboxes{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:6px;
+background:#ffffff;
+padding:10px;
+border:1px solid #B388FF;
+border-radius:10px;
+max-height:160px;
+overflow-y:auto;
+}
+
+.action-by-checkboxes label{
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+border:2px solid #B388FF;
+border-radius:12px;
+padding:8px;
+font-weight:600;
+cursor:pointer;
+background:#fff;
+transition:all 0.25s ease;
+}
+
+
+.action-by-checkboxes input{
+display:none;
+}
+
+/* Hover effect */
+
+.action-by-checkboxes label:hover{
+background:#f3e8ff;
+}
+
+/* Selected GREEN */
+
+.action-by-checkboxes label:has(input:checked){
+background:#2e7d32;
+border-color:#2e7d32;
+color:white;
+box-shadow:0 4px 10px rgba(46,125,50,0.4);
+}
+.action-by-checkboxes label{
+font-size:14px;
+cursor:pointer;
+}
+  </style>
+</head>
+<body>
+<h1 class="inspection-title">
+  <img src="./Safety Inspection Form - Solapur Division_files/pngegg.png" alt="Railway Logo" style="height:60px;">
+  Safety Inspection Form
+</h1>
+<div id="errorMessage" class="hidden"></div>
+<div id="loading">Submitting your report...</div>
+
+<!-- Step 1 -->
+<div id="step1" class="section">
+  <h2>Inspecting Official</h2>
+  <label>Name:</label>
+  <input type="text" id="inspectorName" placeholder="Enter your full name" required="">
+  <label>Phone Number:</label>
+  <input type="tel" id="inspectorPhone" placeholder="10-digit mobile" maxlength="10" required="">
+  <label>Designation:</label>
+  <input type="text" id="inspectorDesignation" placeholder="Enter Your Designation" style="text-transform: uppercase;" required="">
+  <label>HQ (Headquarter):</label>
+  <select id="inspectorHQ" required="">
+    <option value="">-- Select HQ --</option>
+  <option value="AAG">AAG</option><option value="AKOR">AKOR</option><option value="ARAG">ARAG</option><option value="BALE">BALE</option><option value="BBD">BBD</option><option value="BGVN">BGVN</option><option value="BHLI">BHLI</option><option value="BLNI">BLNI</option><option value="BLNK">BLNK</option><option value="BOT">BOT</option><option value="BRB">BRB</option><option value="BTW">BTW</option><option value="DD">DD</option><option value="DHS">DHS</option><option value="DKY">DKY</option><option value="DLGN">DLGN</option><option value="DRSV">DRSV</option><option value="DUD">DUD</option><option value="GDGN">GDGN</option><option value="GUR">GUR</option><option value="HG">HG</option><option value="HGL">HGL</option><option value="HHD">HHD</option><option value="HQR">HQR</option><option value="JEUR">JEUR</option><option value="JNTR">JNTR</option><option value="JTRD">JTRD</option><option value="JVA">JVA</option><option value="KEM">KEM</option><option value="KLBG">KLBG</option><option value="KMRD">KMRD</option><option value="KUI">KUI</option><option value="KVK">KVK</option><option value="KWV">KWV</option><option value="LNP">LNP</option><option value="LUR">LUR</option><option value="MA">MA</option><option value="MKPT">MKPT</option><option value="MLB">MLB</option><option value="MLM">MLM</option><option value="MO">MO</option><option value="MR">MR</option><option value="MRJ">MRJ</option><option value="MRX">MRX</option><option value="MSDG">MSDG</option><option value="MVE">MVE</option><option value="NGS">NGS</option><option value="OSA">OSA</option><option value="PJR">PJR</option><option value="PK">PK</option><option value="PPJ">PPJ</option><option value="KEU">KEU</option><option value="PVR">PVR</option><option value="SDB">SDB</option><option value="SEI">SEI</option><option value="SGLA">SGLA</option><option value="SGRE">SGRE</option><option value="SUR">SUR</option><option value="SVG">SVG</option><option value="TJSP">TJSP</option><option value="TKWD">TKWD</option><option value="TLT">TLT</option><option value="WADI">WADI</option><option value="WDS">WDS</option><option value="WKA">WKA</option><option value="WSB">WSB</option><option value="WSD">WSD</option><option value="YSI">YSI</option><option value="Other">Other</option></select>
+  <div id="otherHQContainer" class="hidden" style="margin-top:10px;">
+    <label>Specify Other HQ:</label>
+    <input type="text" id="otherHQInput" placeholder="Enter HQ name (e.g. PUNE, MUMBAI, etc.)" style="text-transform: uppercase;">
+  </div>
+  <label>Division:</label>
+  <select id="inspectorDivision" required="">
+    <option value="">-- Select --</option>
+    <option value="Solapur">Solapur</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Pune">Pune</option>
+    <option value="Bhusawal">Bhusawal</option>
+    <option value="Nagpur">Nagpur</option>
+  </select>
+  <button onclick="proceedToInspectionDetails()" style="background: #6a11cb; color:white;">Continue</button>
+</div>
+
+<!-- Step 2 -->
+<div id="step2" class="section hidden">
+  <div style="text-align:center;font-size:18px;color:#0d47a1;margin-bottom:15px;font-weight:bold;">
+    Inspection #<span id="inspectionCount">1</span>
+  </div>
+  <h2>Add Inspection</h2>
+  <label>Date of Inspection (used for all inspections in this session):</label>
+  <input type="date" id="sessionInspectionDate" required="">
+  <label>Type of Inspection:</label>
+  <select id="inspectionType" onchange="showInspectionFields()">
+    <option value="">-- Select Type --</option>
+    <option value="FOOTPLATE INSPECTION">Footplate Inspection</option>
+    <option value="STATION INSPECTION">Station/Yard Inspection</option>
+    <option value="SURPRISE/AMBUSH INSPECTION">Surprise/Ambush Inspection</option>
+    <option value="ON TRAIN">On Train</option>
+    <option value="COACHING DEPOT">Coaching Depot</option>
+    <option value="WORKSITE INSPECTION">Worksite Inspection</option>
+    <option value="LC GATE INSPECTION">LC Gate Inspection</option>
+    <option value="TSS/SP/SSP">TSS/SP/SSP Inspection</option>
+    <option value="RUNNING ROOM INSPECTION">Running Room Inspection</option>
+    <option value="LOBBY INSPECTION">Lobby Inspection</option>
+    <option value="S&amp;T DEPOT">S&amp;T Depot</option>
+    <option value="ART/ARME">ART/ARME</option>
+  </select>
+  <div id="dynamicFields"></div>
+  <div id="photosSection" class="hidden">
+    <h3>Photos (Optional, max 10)</h3>
+    <div style="margin-bottom:15px;padding:12px;background:#e3f2fd;border-radius:10px;text-align:center;">
+      <p style="margin:5px 0;font-size:15px;color:#1565c0;">
+        <strong>Geo-Tagging Status:</strong>
+        <span id="geoStatus" style="color:#c62828;font-weight:bold;">Not Enabled</span>
+      </p>
+      <button type="button" id="enableGeoBtn" style="background:#1976d2;color:white;padding:10px 20px;border:none;border-radius:8px;font-weight:bold;margin-top:8px;">
+        Enable Location Tagging
+      </button>
+      <p style="font-size:13px;color:#555;margin-top:10px;">
+        Tap above to allow location access — all photos will be auto-tagged
+      </p>
+    </div>
+    <div style="display:flex;gap:15px;align-items:center;margin-bottom:10px;">
+      <input type="file" id="photoInput" accept="image/*" multiple="" style="flex:1;">
+      <button type="button" id="cameraBtn" style="background:#25D366;color:white;padding:12px 20px;border-radius:50%;font-size:24px;box-shadow:0 6px 20px rgba(37,211,102,0.4);">
+        Camera
+      </button>
+    </div>
+    <div id="photoContainer"></div>
+  </div>
+  <div id="deficienciesSection" class="hidden">
+    <h3>Deficiencies (if any)</h3>
+    <div id="deficiencyContainer"></div>
+    <button type="button" onclick="addDeficiency()" style="background: linear-gradient(to right, #6a11cb, #FF007F, #2575fc);">+ Add More Deficiency</button>
+    <br><br>
+    <button type="button" id="addInspectionBtn" onclick="addCurrentInspection()" style="background: linear-gradient(90deg, #6A11CB, #8E2DE2);color:#fff;font-size:18px;padding:14px 30px;">
+      Add This Inspection
+    </button>
+  </div>
+  <div style="text-align:center;margin-top:30px;">
+    <button onclick="goBackToStep1()" style="background: linear-gradient(45deg, #FF007F 0%, #FF3FA1 30%, #A42CD6 70%, #6A11CB 100%);">
+      Back to Inspecting Official
+    </button>
+  </div>
+</div>
+
+<!-- Final Review -->
+<div id="finalActions" class="section hidden">
+  <h2 class="success">Review All Inspections</h2>
+  <p>You have added <strong><span id="totalInspections">0</span></strong> inspection(s)</p>
+  <div id="inspectionPreviewList" style="max-height:65vh;overflow-y:auto;background:#f8fdff;border-radius:12px;padding:15px;border:1px solid #90caf9;"></div>
+  <div style="text-align:center;margin-top:25px;">
+    <button onclick="showStep2Again()" style="background: linear-gradient(90deg, #6A11CB, #8E2DE2);color:#fff;padding:14px 28px;font-size:17px;">
+      + Add Another Inspection
+    </button>
+    <button id="submitWhatsAppBtn" onclick="finalSubmitWithWhatsApp()" style="background:#25D366;color:#fff;font-size: 17px;padding:14px 28px;margin-left:15px;box-shadow:0 8px 25px rgba(37,211,102,0.4);">
+      Confirm &amp; Submit via WhatsApp
+    </button>
+  </div>
+  <div style="text-align:center;margin-top:25px;">
+    <button onclick="goBackToAddInspection()" style="background: linear-gradient(45deg, #FF007F 0%, #FF3FA1 30%, #A42CD6 70%, #6A11CB 100%);">
+      Back to Add Inspection
+    </button>
+  </div>
+</div>
+<div id="summary" class="hidden"></div>
+
+<p class="footer-credit" style="animation: fadeInUp 2s ease;">
+  Designed &amp; Developed by <span style="color:#1565c0;">Safety Department</span>, Solapur Division
+</p>
+<a href="https://wa.me/919022507772" class="whatsapp-btn" title="Contact Safety Dept">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<div class="version-tag">V5.0 • 13-March-2026</div>
+
+<script>
+// Auto-grow textarea function
+function autoGrowTextarea(element) {
+  element.style.height = 'auto';
+  element.style.height = (element.scrollHeight) + 'px';
+}
+// Auto-grow on input
+document.addEventListener('input', function(e) {
+  if (e.target.tagName === 'TEXTAREA') {
+    autoGrowTextarea(e.target);
+  }
+});
+// Auto-grow on paste (needs tiny delay)
+document.addEventListener('paste', function(e) {
+  if (e.target.tagName === 'TEXTAREA') {
+    setTimeout(() => {
+      autoGrowTextarea(e.target);
+    }, 0);
+  }
+});
+
+const actionByOptions = [
+  {value: "Sr.DEN/S", label: "Sr.DEN/S"},
+  {value: "Sr.DEN/C", label: "Sr.DEN/C"},
+  {value: "Sr.DEE/G", label: "Sr.DEE/G"},
+  {value: "Sr.DEE/TRD", label: "Sr.DEE/TRD"},
+  {value: "Sr.DEE/TRO", label: "Sr.DEE/TRO"},
+  {value: "Sr.DSTE", label: "Sr.DSTE"},
+  {value: "Sr.DME", label: "Sr.DME"},
+  {value: "Sr.DOM", label: "Sr.DOM"},
+  {value: "Sr.DPO", label: "Sr.DPO"},
+  {value: "Sr.DFM", label: "Sr.DFM"},
+  {value: "Sr.DCM", label: "Sr.DCM"},
+  {value: "DSC", label: "DSC"},
+  {value: "Sr.DMM", label: "Sr.DMM"},
+  {value: "CMS", label: "CMS"},
+  {value: "Sr.DEN/Co", label: "Sr.DEN/Co"},
+  {value: "ADEN/TM/SUR", label: "ADEN/TM/SUR"},
+  {value: "DEN/TRACK", label: "DEN/TRACK"},
+  {value: "DEN/GSU", label: "DEN/GSU"},
+];
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx_opl8A-iUgATxMl-E4EZq4lr4rDTi8S_f3hex9TZ_oxJyc6iLCbdz8q8fePV6okUJtw/exec";
+let currentUser = {};
+let allInspections = [];
+let editingIndex = -1;
+let currentPhotos = [];
+let geoTaggingEnabled = false;
+let currentUserLocation = null;
+
+const stations = ['AAG','AKOR','ARAG','BALE','BBD','BGVN','BHLI','BLNI','BLNK','BOT','BRB','BTW','DD','DHS','DKY','DLGN','DRSV','DUD','GDGN','GUR','HG','HGL','HHD','HQR','JEUR','JNTR','JTRD','JVA','KEM','KLBG','KMRD','KUI','KVK','KWV','LNP','LUR','MA','MKPT','MLB','MLM','MO','MR','MRJ','MRX','MSDG','MVE','NGS','OSA','PJR','PK','PPJ','KEU','PVR','SDB','SEI','SGLA','SGRE','SUR','SVG','TJSP','TKWD','TLT','WADI','WDS','WKA','WSB','WSD','YSI'];
+const coachingDepots = ['KLBG','SUR','LUR'];
+const tssList = [
+  'SUR/SSP', 'BRB/SSP', 'MLM/SP', 'JNTR/SSP', 'KEU/TSS', 'WSB/SSP', 'PPJ/SSP', 'BLNI/SP', 'KEM/SSP', 'DHS/SSP', 'KWV/TSS',
+  'WDS/SSP', 'WKA/SP', 'MKPT/SSP', 'MO/TSS', 'MVE/SSP', 'BALE/SP', 'NTPC/SSP', 'HG/TSS', 'TLT/SSP', 'AKOR/SSP', 'NGS/SP', 'DUD/SSP', 'KUI/SSP', 'GDGN/TSS' , 'GUR SSP',
+  'BBD/SP', 'KLBG/SSP', 'HQR/SSP', 'MR/TSS', 'SDB/SSP', 'WADI/SSP', 'MRJ/SP', 'ARAG/SSP', 'SGRE/TSS', 'KVK/SSP', 'DLGN/SP', 'JTRD/SSP', 'SGLA/SP',
+  'WSD/TSS', 'BHLI/TSS', 'PVR/SSP', 'LUAL/SP', 'SEI/SP', 'BTW/TSS', 'PJR/SSP', 'DRSV/SP', 'YSI/SSP', 'KMRD/TSS', 'DKY/SSP', 'MRX/SP', 'OSA/TSS', 'HGL/SSP', 'LUR/SSP', 'LTRR/SP'
+];
+const runningRoomAndLobbyLocations = ['SUR', 'KLBG', 'LUR', 'WADI', 'KWV'];
+const snTDepotLocations = ['SUR', 'KLBG', 'KWV'];
+const artArmeLocations = ['SUR', 'WADI', 'KWV'];
+
+function showError(msg) {
+  const el = document.getElementById('errorMessage');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+  setTimeout(() => el.classList.add('hidden'), 6000);
+}
+
+// Populate HQ dropdown + Other option
+document.addEventListener('DOMContentLoaded', () => {
+  const hqSelect = document.getElementById('inspectorHQ');
+  stations.forEach(station => {
+    const opt = document.createElement('option');
+    opt.value = station;
+    opt.textContent = station;
+    hqSelect.appendChild(opt);
+  });
+  // Add "Other"
+  const otherOpt = document.createElement('option');
+  otherOpt.value = 'Other';
+  otherOpt.textContent = 'Other';
+  hqSelect.appendChild(otherOpt);
+
+  // Show/hide custom HQ input
+  hqSelect.addEventListener('change', function() {
+    const container = document.getElementById('otherHQContainer');
+    if (this.value === 'Other') {
+      container.classList.remove('hidden');
+    } else {
+      container.classList.add('hidden');
+    }
+  });
+});
+
+function proceedToInspectionDetails() {
+  const name = document.getElementById('inspectorName').value.trim();
+  const phone = document.getElementById('inspectorPhone').value.trim();
+  const designation = document.getElementById('inspectorDesignation').value.trim().toUpperCase();
+  let hq = document.getElementById('inspectorHQ').value;
+  const division = document.getElementById('inspectorDivision').value;
+
+  if (!name || !phone || !designation || !hq || !division) {
+    return showError('Please fill all fields (including HQ)');
+  }
+  if (!/^\d{10}$/.test(phone)) {
+    return showError('Enter valid 10-digit phone');
+  }
+
+  // Handle "Other" HQ
+  if (hq === 'Other') {
+    const customHQ = document.getElementById('otherHQInput').value.trim().toUpperCase();
+    if (!customHQ) {
+      return showError('Please specify the HQ when "Other" is selected');
+    }
+    hq = customHQ;
+  }
+
+  currentUser = { name, phone, designation, hq, division };
+  document.getElementById('step1').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('sessionInspectionDate').value = today;
+  updateInspectionCounter();
+}
+
+function updateInspectionCounter() {
+  const nextNumber = allInspections.length + 1;
+  document.getElementById('inspectionCount').textContent = nextNumber;
+}
+
+function goBackToStep1() {
+  document.getElementById('step2').classList.add('hidden');
+  document.getElementById('finalActions').classList.add('hidden');
+  document.getElementById('step1').classList.remove('hidden');
+  document.getElementById('inspectionCount').textContent = '1';
+}
+
+function goBackToAddInspection() {
+  document.getElementById('finalActions').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
+  document.getElementById('inspectionType').value = '';
+  showInspectionFields();
+}
+
+function showInspectionFields() {
+  const type = document.getElementById('inspectionType').value;
+  const container = document.getElementById('dynamicFields');
+  container.innerHTML = '';
+  document.getElementById('photosSection').classList.add('hidden');
+  document.getElementById('deficienciesSection').classList.add('hidden');
+  currentPhotos = [];
+  document.getElementById('photoContainer').innerHTML = '';
+  geoTaggingEnabled = false;
+  currentUserLocation = null;
+  document.getElementById('geoStatus').textContent = "Not Enabled";
+  document.getElementById('geoStatus').style.color = "#c62828";
+  document.getElementById('enableGeoBtn').disabled = false;
+  document.getElementById('enableGeoBtn').textContent = "Enable Location Tagging";
+  document.getElementById('enableGeoBtn').style.background = "#1976d2";
+  if (!type) return;
+
+  let html = '';
+  if (type === 'FOOTPLATE INSPECTION') {
+    html = `
+      <label>Train Number:</label>
+      <input type="text" id="trainNo" required />
+      <label>Train Name (Optional):</label>
+      <input type="text" id="trainName" />
+      <label>From Station:</label>
+      <select id="fromStation" required>
+        <option value="">-- Select From Station --</option>
+        ${stations.map(s => `<option value="${s}">${s}</option>`).join('')}
+      </select>
+      <label>To Station:</label>
+      <select id="toStation" required>
+        <option value="">-- Select To Station --</option>
+        ${stations.map(s => `<option value="${s}">${s}</option>`).join('')}
+      </select>
+      <label>Loco Number:</label>
+      <input type="text" id="locoNo" required />
+      <label>Loco, Cab & Base:</label>
+      <input type="text" id="cabBase" required />
+    `;
+  } else if (type === 'STATION INSPECTION') {
+    html = `<label style="font-weight: 900;">Station:</label><select id="stationName" required><option value="">-- Select --</option>${stations.map(s=>`<option>${s}</option>`).join('')}</select>`;
+  } else if (type === 'SURPRISE/AMBUSH INSPECTION') {
+    html = `<label>Location:</label><input type="text" id="ambushLocation" required />`;
+  } else if (type === 'ON TRAIN') {
+    html = `<label>Train Number:</label><input type="text" id="trainNo" required /><label>Location:</label><input type="text" id="trainLocation" />`;
+  } else if (type === 'COACHING DEPOT') {
+    html = `<label>Depot:</label><select id="depotName" required><option value="">-- Select --</option>${coachingDepots.map(d=>`<option>${d}</option>`).join('')}</select>`;
+  } else if (type === 'WORKSITE INSPECTION') {
+    html = `<label>Description:</label><input type="text" id="worksiteDesc" required />`;
+  } else if (type === 'LC GATE INSPECTION') {
+    html = `<label>LC Gate:</label><input type="text" id="otherLocation" required /><label>Gate Type:</label><input type="text" id="otherDesc" required />`;
+  } else if (type === 'TSS/SP/SSP') {
+    html = `<label>TSS/SP/SSP:</label><select id="tssName" required><option value="">-- Select --</option>${tssList.map(t => `<option value="${t}">${t}</option>`).join('')}</select>`;
+  } else if (type === 'RUNNING ROOM INSPECTION' || type === 'LOBBY INSPECTION') {
+    const labelText = type === 'RUNNING ROOM INSPECTION' ? 'Running Room' : 'Lobby';
+    html = `<label>${labelText} Location:</label><select id="locationSelect" required><option value="">-- Select --</option>${runningRoomAndLobbyLocations.map(loc => `<option value="${loc}">${loc}</option>`).join('')}</select>`;
+  } else if (type === 'S&T DEPOT') {
+    html = `<label>S&T Depot Location:</label><select id="locationSelect" required><option value="">-- Select --</option>${snTDepotLocations.map(loc => `<option value="${loc}">${loc}</option>`).join('')}</select>`;
+  } else if (type === 'ART/ARME') {
+    html = `<label>ART/ARME Location:</label><select id="locationSelect" required><option value="">-- Select --</option>${artArmeLocations.map(loc => `<option value="${loc}">${loc}</option>`).join('')}</select>`;
+  }
+  container.innerHTML = html;
+  document.getElementById('photosSection').classList.remove('hidden');
+  document.getElementById('deficienciesSection').classList.remove('hidden');
+  generateDefFields();
+}
+
+function createDeficiencyField() {
+  const wrapper = document.createElement('div');
+  wrapper.style.marginBottom = '24px';
+  wrapper.style.padding = '12px';
+  wrapper.style.border = '1px solid #e0d4ff';
+  wrapper.style.borderRadius = '12px';
+  wrapper.style.background = '#f8f4ff';
+
+  const cont = document.getElementById('deficiencyContainer');
+const idx = document.querySelectorAll('#deficiencyContainer textarea').length + 1;
+
+  // Deficiency label + textarea
+  const label = document.createElement('label');
+  label.textContent = `Deficiency ${idx}`;
+  label.style.display = 'block';
+  label.style.marginBottom = '6px';
+  label.style.fontWeight = '600';
+  label.style.color = '#4A148C';
+  const ta = document.createElement('textarea');
+  ta.placeholder = `Deficiency ${idx} (optional)`;
+  ta.rows = 3;
+  ta.style.width = '100%';
+  ta.style.padding = '12px 16px';
+  ta.style.border = '1.5px solid #B388FF';
+  ta.style.borderRadius = '10px';
+  ta.style.fontSize = '15px';
+  ta.style.resize = 'vertical';
+  ta.style.minHeight = '70px';
+  ta.style.boxSizing = 'border-box';
+
+  ta.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') e.preventDefault();
+  });
+  const aiBtn = document.createElement('button');
+  aiBtn.textContent = '✨ Refine with AI';
+  aiBtn.style.margin = '8px 0 12px';
+  aiBtn.style.background = 'linear-gradient(90deg, #4CAF50, #2196F3)';
+  aiBtn.style.fontSize = '13px';
+  aiBtn.style.padding = '6px 14px';
+  aiBtn.onclick = () => refineWithAI(ta);
+
+  // Action By
+  const actionLabel = document.createElement('label');
+  actionLabel.textContent = `Action By (select multiple if required)`;
+  actionLabel.style.display = 'block';
+  actionLabel.style.margin = '14px 0 8px';
+  actionLabel.style.fontWeight = '600';
+  actionLabel.style.color = '#4A148C';
+
+ const actionBox = document.createElement('div');
+actionBox.className = "action-by-checkboxes";
+
+actionByOptions.forEach(opt => {
+
+  const cbLabel = document.createElement('label');
+  cbLabel.style.display = "block";
+  cbLabel.style.marginBottom = "4px";
+
+  const checkbox = document.createElement('input');
+  checkbox.type = "checkbox";
+  checkbox.value = opt.value;
+  checkbox.style.marginRight = "6px";
+
+  cbLabel.appendChild(checkbox);
+  cbLabel.appendChild(document.createTextNode(opt.label));
+
+  actionBox.appendChild(cbLabel);
+
+});
+
+wrapper.appendChild(label);
+wrapper.appendChild(ta);
+wrapper.appendChild(aiBtn);
+wrapper.appendChild(actionLabel);
+wrapper.appendChild(actionBox);
+
+  setTimeout(() => autoGrowTextarea(ta), 10);
+  return wrapper;
+}
+
+function generateDefFields() {
+  const cont = document.getElementById('deficiencyContainer');
+  cont.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    cont.appendChild(createDeficiencyField());
+  }
+}
+
+function addDeficiency() {
+  const cont = document.getElementById('deficiencyContainer');
+  cont.appendChild(createDeficiencyField());
+}
+
+// AI Refine Function
+async function refineWithAI(textarea) {
+
+  const originalText = textarea.value.trim();
+
+  if (!originalText) {
+    showError("Please enter deficiency text first");
+    return;
+  }
+
+  const btn = event.currentTarget;
+  const originalBtnText = btn.textContent;
+
+  btn.disabled = true;
+  btn.textContent = "Refining...";
+
+  try {
+
+    while (true) {
+
+      const refined = await refineWithGemini(originalText);
+
+      const action = prompt(
+`AI Suggestion
+
+${refined}
+
+A = Accept
+R = Re-generate
+C = Cancel`
+      );
+
+      if (!action) break;
+
+      const choice = action.trim().toUpperCase();
+
+      if (choice === "A") {
+
+        textarea.value = refined;
+        autoGrowTextarea(textarea);
+
+        showError("AI suggestion accepted");
+        break;
+      }
+
+      if (choice === "R") {
+        continue;
+      }
+
+      break;
+    }
+
+  } catch (err) {
+    console.error(err);
+    showError("AI refinement failed");
+  }
+
+  btn.disabled = false;
+  btn.textContent = originalBtnText;
+}
+const GEMINI_API_KEY = "AQ.Ab8RN6JjzGyFgXoH6tK2Ti3xX5yIYjTexCAG1aAC0P9OnVhCLA";
+
+async function refineWithGemini(text) {
+
+  const prompt = `
+You are a senior Railway Safety Officer.
+
+Rewrite the following inspection deficiency in professional railway inspection report language.
+
+Rules:
+- Keep it concise.
+- Use formal railway terminology.
+- Mention observation only.
+- Do not add recommendations.
+- Return only the rewritten deficiency.
+
+Deficiency:
+"${text}"
+`;
+
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                text: prompt
+              }
+            ]
+          }
+        ]
+      })
+    }
+  );
+
+  const data = await response.json();
+
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || text;
+}
+async function getCurrentLocation() {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) return resolve(null);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude.toFixed(6);
+        const lon = position.coords.longitude.toFixed(6);
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=16&addressdetails=1`)
+          .then(r => r.json())
+          .then(data => {
+            const place = data.display_name || `${lat}, ${lon}`;
+            const shortPlace = place.split(',').slice(0,4).join(',');
+            resolve({ lat, lon, place: shortPlace });
+          })
+          .catch(() => resolve({ lat, lon, place: `${lat}, ${lon}` }));
+      },
+      () => resolve(null),
+      { timeout: 15000, enableHighAccuracy: true, maximumAge: 60000 }
+    );
+  });
+}
+
+document.getElementById('enableGeoBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('enableGeoBtn');
+  const status = document.getElementById('geoStatus');
+  btn.disabled = true;
+  btn.textContent = "Requesting Location...";
+  status.textContent = "Requesting...";
+  status.style.color = "#ff9800";
+  const location = await getCurrentLocation();
+  if (location) {
+    geoTaggingEnabled = true;
+    currentUserLocation = location;
+    status.textContent = "Enabled ✓";
+    status.style.color = "#2e7d32";
+    btn.textContent = "Location Enabled ✓";
+    btn.style.background = "#2e7d32";
+    showError("Geo-tagging enabled! All photos will now have location.");
+  } else {
+    geoTaggingEnabled = false;
+    currentUserLocation = null;
+    status.textContent = "Permission Denied";
+    status.style.color = "#c62828";
+    btn.textContent = "Enable Location Tagging";
+    btn.disabled = false;
+    showError("Location access denied. Photos will not be geo-tagged.");
+  }
+});
+
+document.getElementById('cameraBtn').addEventListener('click', () => {
+  document.getElementById('photoInput').click();
+});
+
+document.getElementById('photoInput').addEventListener('change', async e => {
+  const files = e.target.files;
+  if (!files || files.length === 0) return;
+  if (currentPhotos.length + files.length > 10) return showError('Maximum 10 photos allowed');
+  showError("Processing photos...");
+  for (const file of files) {
+    if (!file.type.startsWith('image/')) continue;
+    let locationText = 'Location not captured';
+    if (geoTaggingEnabled && currentUserLocation) {
+      locationText = `${currentUserLocation.place} (Lat: ${currentUserLocation.lat}, Lon: ${currentUserLocation.lon})`;
+    } else if (geoTaggingEnabled) {
+      const freshLoc = await getCurrentLocation();
+      if (freshLoc) locationText = `${freshLoc.place} (Lat: ${freshLoc.lat}, Lon: ${freshLoc.lon})`;
+    }
+    const compressed = await compressImage(file);
+    const base64 = await fileToBase64(compressed);
+    const photoData = {
+      name: file.name || `Photo_${new Date().getTime()}.jpg`,
+      data: base64,
+      location: locationText
+    };
+    currentPhotos.push(photoData);
+    const div = document.createElement('div');
+    div.className = 'photo-preview';
+    div.innerHTML = `
+      <img src="${base64}">
+      <button class="remove-photo" onclick="removeCurrentPhoto(${currentPhotos.length-1})">X</button>
+      <div style="position:absolute;bottom:4px;left:4px;right:4px;background:rgba(0,0,0,0.7);color:white;font-size:10px;padding:3px 6px;border-radius:4px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2;">
+        ${locationText.substring(0, 45)}${locationText.length > 45 ? '...' : ''}
+      </div>
+    `;
+    document.getElementById('photoContainer').appendChild(div);
+  }
+  e.target.value = '';
+});
+
+function removeCurrentPhoto(i) {
+  currentPhotos.splice(i, 1);
+  const cont = document.getElementById('photoContainer');
+  cont.innerHTML = '';
+  currentPhotos.forEach((p, idx) => {
+    const div = document.createElement('div');
+    div.className = 'photo-preview';
+    div.innerHTML = `
+      <img src="${p.data}">
+      <button class="remove-photo" onclick="removeCurrentPhoto(${idx})">X</button>
+      <div style="position:absolute;bottom:4px;left:4px;right:4px;background:rgba(0,0,0,0.7);color:white;font-size:10px;padding:3px 6px;border-radius:4px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2;">
+        ${p.location.substring(0, 45)}${p.location.length > 45 ? '...' : ''}
+      </div>
+    `;
+    cont.appendChild(div);
+  });
+}
+
+async function compressImage(file) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height;
+      if (w > 1024 || h > 1024) {
+        const ratio = w > h ? 1024 / w : 1024 / h;
+        w *= ratio; h *= ratio;
+      }
+      canvas.width = w; canvas.height = h;
+      pica().resize(img, canvas).then(() => {
+        canvas.toBlob(blob => resolve(new File([blob], file.name, {type: 'image/jpeg'})), 'image/jpeg', 0.85);
+      });
+    };
+  });
+}
+
+function fileToBase64(file) {
+  return new Promise((res) => {
+    const reader = new FileReader();
+    reader.onload = () => res(reader.result);
+    reader.readAsDataURL(file);
+  });
+}
+
+function addCurrentInspection() {
+  const type = document.getElementById('inspectionType').value;
+  if (!type) return showError("Select inspection type");
+  const sessionDate = document.getElementById('sessionInspectionDate').value;
+  if (!sessionDate) return showError("Please select Date of Inspection");
+
+  let specific = '';
+  // (All the specific logic remains exactly the same as before)
+  if (type === 'FOOTPLATE INSPECTION') {
+    const trainNo = document.getElementById('trainNo')?.value.trim();
+    const trainName = document.getElementById('trainName')?.value.trim() || 'N/A';
+    const fromSt = document.getElementById('fromStation')?.value;
+    const toSt = document.getElementById('toStation')?.value;
+    const locoNo = document.getElementById('locoNo')?.value.trim();
+    const cabBase = document.getElementById('cabBase')?.value.trim();
+    if (!trainNo) return showError("Train number is required");
+    if (!fromSt) return showError("Please select From Station");
+    if (!toSt) return showError("Please select To Station");
+    if (!locoNo) return showError("Loco number is required");
+    if (!cabBase) return showError("Cab & Base is required");
+    specific = `Train: ${trainNo} (${trainName}), Section: ${fromSt} to ${toSt}, Loco: ${locoNo}, Cab: ${cabBase}`;
+  } else if (type === 'STATION INSPECTION') {
+    const station = document.getElementById('stationName').value;
+    if (!station) return showError("Please select a station");
+    specific = `${station}`;
+  } else if (type === 'SURPRISE/AMBUSH INSPECTION') {
+    const location = document.getElementById('ambushLocation').value.trim();
+    if (!location) return showError("Location is required");
+    specific = `${location}`;
+  } else if (type === 'ON TRAIN') {
+    const trainNo = document.getElementById('trainNo').value.trim();
+    if (!trainNo) return showError("Train number required");
+    const location = document.getElementById('trainLocation')?.value.trim();
+    specific = `Train: ${trainNo}${location ? ', Location: ' + location : ''}`;
+  } else if (type === 'COACHING DEPOT') {
+    const depot = document.getElementById('depotName').value;
+    if (!depot) return showError("Please select a depot");
+    specific = `${depot}`;
+  } else if (type === 'WORKSITE INSPECTION') {
+    const desc = document.getElementById('worksiteDesc').value.trim();
+    if (!desc) return showError("Worksite description required");
+    specific = `Worksite: ${desc}`;
+  } else if (type === 'LC GATE INSPECTION') {
+    const location = document.getElementById('otherLocation').value.trim();
+    const desc = document.getElementById('otherDesc').value.trim();
+    if (!location || !desc) return showError("Both location and description are required");
+    specific = `Location: ${location}, Desc: ${desc}`;
+  } else if (type === 'TSS/SP/SSP') {
+    const tss = document.getElementById('tssName').value;
+    if (!tss) return showError("Please select TSS/SP/SSP");
+    specific = `${tss}`;
+  } else if (type === 'RUNNING ROOM INSPECTION' || type === 'LOBBY INSPECTION') {
+    const loc = document.getElementById('locationSelect')?.value;
+    if (!loc) return showError("Please select location");
+    const label = type === 'RUNNING ROOM INSPECTION' ? 'Running Room' : 'Lobby';
+    specific = `${label}: ${loc}`;
+  } else if (type === 'S&T DEPOT') {
+    const loc = document.getElementById('locationSelect')?.value;
+    if (!loc) return showError("Please select S&T Depot location");
+    specific = `S&T Depot: ${loc}`;
+  } else if (type === 'ART/ARME') {
+    const loc = document.getElementById('locationSelect')?.value;
+    if (!loc) return showError("Please select ART/ARME location");
+    specific = `ART/ARME: ${loc}`;
+  }
+  const defWrappers = document.getElementById('deficiencyContainer').children;
+  const defs = [];
+  Array.from(defWrappers).forEach(wrapper => {
+    const ta = wrapper.querySelector('textarea');
+   
+    const checkboxes = wrapper.querySelectorAll('input[type="checkbox"]:checked');
+    const text = ta ? ta.value.trim() : '';
+    if (text) {
+      let actionBys = Array.from(checkboxes).map(cb => cb.value);
+      defs.push({
+        text: text,
+        actionBy: actionBys.length ? actionBys : ['Not Assigned']
+      });
+    }
+  });
+
+  const newInsp = {
+    date: sessionDate,
+    type,
+    specific,
+    deficiencies: defs,
+    photos: currentPhotos.map(p => ({ name: p.name, data: p.data, location: p.location }))
+  };
+
+  if (editingIndex >= 0) {
+    allInspections[editingIndex] = newInsp;
+    editingIndex = -1;
+    showError("Inspection updated successfully!");
+  } else {
+    allInspections.push(newInsp);
+    showError("Inspection added successfully!");
+  }
+
+  currentPhotos = [];
+  document.getElementById('photoContainer').innerHTML = '';
+  document.getElementById('photoInput').value = '';
+  document.getElementById('inspectionType').value = '';
+  document.getElementById('dynamicFields').innerHTML = '';
+  document.getElementById('deficiencyContainer').innerHTML = '';
+  generateDefFields();
+
+  refreshPreviewList();
+  document.getElementById('finalActions').classList.remove('hidden');
+  document.getElementById('step2').classList.add('hidden');
+  document.getElementById('finalActions').scrollIntoView({ behavior: 'smooth' });
+}
+
+function refreshPreviewList() {
+  const list = document.getElementById('inspectionPreviewList');
+  list.innerHTML = '';
+  allInspections.forEach((insp, i) => list.appendChild(createPreviewCard(insp, i)));
+  document.getElementById('totalInspections').textContent = allInspections.length;
+}
+
+function createPreviewCard(insp, index) {
+  const card = document.createElement('div');
+  card.style = `border:3px solid #2e7d32;border-radius:16px;padding:20px;margin:15px 0;background:white;box-shadow:0 8px 25px rgba(0,0,0,0.15);`;
+  card.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:start;">
+      <div style="flex:1;">
+        <h3 style="margin:0 0 10px;color:#0d47a1;">
+          <strong>${index + 1}. ${insp.type}</strong>
+        </h3>
+        <p><strong>Date:</strong> ${new Date(insp.date).toLocaleDateString('en-IN')}</p>
+        <p><strong>Details:</strong> ${insp.specific}</p>
+        <p><strong>Deficiencies:</strong></p>
+        <div class="deficiencies-text">
+        ${
+          insp.deficiencies.length
+          ? insp.deficiencies.map((d, i) => `
+            <div>${i + 1}. ${d.text}</div>
+            <div style="font-size:13px;color:#1976d2;margin:4px 0 10px 0;">Action By: ${d.actionBy.join(', ')}</div>
+          `).join('')
+          : '<strong style="color:#2e7d32;">None</strong>'
+        }
+        </div>
+        <p><strong>Photos:</strong> ${insp.photos.length} attached ${insp.photos.some(p => p.location && !p.location.includes('not captured')) ? '• Geo-tagged' : ''}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button onclick="editInspection(${index})" style="background:#ff9800;color:#fff;padding:10px 16px;border:none;border-radius:8px;font-weight:bold;">Edit</button>
+        <button onclick="deleteInspection(${index})" style="background:#c62828;color:#fff;padding:8px 12px;border:none;border-radius:8px;font-size:13px;">Delete</button>
+      </div>
+    </div>
+    ${insp.photos.length ? `<div style="margin-top:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:10px;">
+      ${insp.photos.map(p => `
+        <div style="position:relative;">
+          <img src="${p.data}" style="width:100%;height:70px;object-fit:cover;border-radius:8px;border:2px solid #bbdefb;">
+          <div style="font-size:9px;color:#d32f2f;background:rgba(255,255,255,0.8);padding:2px;border-radius:4px;margin-top:4px;text-align:center;">
+            ${p.location.substring(0, 35)}...
+          </div>
+        </div>
+      `).join('')}
+    </div>` : ''}
+  `;
+  return card;
+}
+
+function editInspection(idx) {
+  const insp = allInspections[idx];
+  if (!insp) return showError("Nothing to edit");
+  editingIndex = idx;
+  document.getElementById('step2').classList.remove('hidden');
+  document.getElementById('finalActions').classList.add('hidden');
+  document.getElementById('sessionInspectionDate').value = insp.date;
+  document.getElementById('inspectionType').value = insp.type;
+  showInspectionFields();
+  document.getElementById('inspectionCount').textContent = idx + 1;
+
+  setTimeout(() => {
+    // Populate specific fields (same as before)
+    if (insp.type === 'FOOTPLATE INSPECTION') {
+      const parts = insp.specific.split(', ');
+      if (parts.length < 4) return;
+      const trainMatch = parts[0].match(/Train: (.+?)(?:\s*\((.*)\))?/);
+      if (trainMatch) {
+        document.getElementById('trainNo').value = trainMatch[1]?.trim() || '';
+        document.getElementById('trainName').value = trainMatch[2]?.trim() || '';
+      }
+      const sectionMatch = parts[1]?.match(/Section: (.+) → (.+)/);
+      if (sectionMatch && document.getElementById('fromStation') && document.getElementById('toStation')) {
+        document.getElementById('fromStation').value = sectionMatch[1]?.trim() || '';
+        document.getElementById('toStation').value = sectionMatch[2]?.trim() || '';
+      }
+      if (parts[2]) document.getElementById('locoNo').value = parts[2].replace('Loco: ', '').trim() || '';
+      if (parts[3]) document.getElementById('cabBase').value = parts[3].replace('Cab: ', '').trim() || '';
+    } else if (insp.type === 'TSS/SP/SSP') {
+      const match = insp.specific.match(/TSS\/SP\/SSP: (.+)/);
+      if (match && document.getElementById('tssName')) document.getElementById('tssName').value = match[1].trim();
+    } else if (insp.type === 'RUNNING ROOM INSPECTION' || insp.type === 'LOBBY INSPECTION' ||
+               insp.type === 'S&T DEPOT' || insp.type === 'ART/ARME') {
+      const match = insp.specific.match(/: (.+)/);
+      if (match && document.getElementById('locationSelect')) document.getElementById('locationSelect').value = match[1].trim();
+    }
+
+    // Populate deficiencies with Action By
+    const cont = document.getElementById('deficiencyContainer');
+    cont.innerHTML = '';
+    insp.deficiencies.forEach((defObj) => {
+      const wrapper = createDeficiencyField();
+      cont.appendChild(wrapper);
+      const ta = wrapper.querySelector('textarea');
+      ta.value = defObj.text;
+      setTimeout(() => autoGrowTextarea(ta), 10);
+
+     const checkboxes = wrapper.querySelectorAll('input[type="checkbox"]');
+
+     checkboxes.forEach(cb => {
+  if (defObj.actionBy.includes(cb.value)) {
+    cb.checked = true;
+  }
+});
+    });
+    // Ensure at least 5 fields
+    while (cont.children.length < 5) {
+      cont.appendChild(createDeficiencyField());
+    }
+
+    currentPhotos = insp.photos.map(p => ({name: p.name, data: p.data, location: p.location}));
+    const pc = document.getElementById('photoContainer');
+    pc.innerHTML = '';
+    currentPhotos.forEach((p, i) => {
+      const div = document.createElement('div');
+      div.className = 'photo-preview';
+      div.innerHTML = `
+        <img src="${p.data}">
+        <button class="remove-photo" onclick="removeCurrentPhoto(${i})">X</button>
+        <div style="position:absolute;bottom:4px;left:4px;right:4px;background:rgba(0,0,0,0.7);color:white;font-size:10px;padding:3px 6px;border-radius:4px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2;">
+          ${p.location.substring(0, 45)}${p.location.length > 45 ? '...' : ''}
+        </div>
+      `;
+      pc.appendChild(div);
+    });
+    document.getElementById('addInspectionBtn').textContent = "Update Inspection";
+  }, 100);
+}
+
+function deleteInspection(idx) {
+  allInspections.splice(idx, 1);
+  refreshPreviewList();
+  showError("Inspection removed");
+}
+
+function showStep2Again() {
+  editingIndex = -1;
+  document.getElementById('finalActions').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
+  document.getElementById('inspectionType').value = '';
+  showInspectionFields();
+  document.getElementById('photoContainer').innerHTML = '';
+  currentPhotos = [];
+  document.getElementById('addInspectionBtn').textContent = "Add This Inspection";
+  updateInspectionCounter();
+}
+
+async function finalSubmitWithWhatsApp() {
+  const submitBtn = document.getElementById('submitWhatsAppBtn');
+  if (submitBtn.disabled) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting...";
+  submitBtn.style.opacity = "0.6";
+
+  if (allInspections.length === 0) {
+    showError("Add at least one inspection");
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Confirm & Submit via WhatsApp";
+    submitBtn.style.opacity = "1";
+    return;
+  }
+
+  const sheetDesignation = currentUser.hq
+    ? `${currentUser.designation} (${currentUser.hq})`
+    : currentUser.designation;
+
+  // === DUPLICATE ENTRIES FOR MULTIPLE ACTION BY ===
+  // Only include deficiencies that have at least one Action By selected (skip pure "Not Assigned")
+  let sheetInspections = [];
+  allInspections.forEach(insp => {
+    if (insp.deficiencies.length === 0) {
+      sheetInspections.push({ ...insp });
+    } else {
+      insp.deficiencies.forEach(def => {
+        const actionBys = def.actionBy.filter(ab => ab !== 'Not Assigned');
+        if (actionBys.length > 0) {
+          actionBys.forEach(ab => {
+            sheetInspections.push({
+              date: insp.date,
+              type: insp.type,
+              specific: insp.specific,
+              deficiencies: [def.text],   // single deficiency per row
+              photos: insp.photos,
+              actionBy: ab                // single action by per row
+            });
+          });
+        }
+        // If only "Not Assigned" or empty, we skip it from sheet (but keep in PDF/WhatsApp)
+      });
+    }
+  });
+
+  const payload = {
+    requestType: 'multiple_inspections',
+    submittedAt: new Date().toLocaleString('en-IN'),
+    inspector: {
+      name: currentUser.name,
+      phone: currentUser.phone,
+      designation: sheetDesignation,
+      division: currentUser.division
+    },
+    inspections: sheetInspections
+  };
+
+  try {
+    document.getElementById('loading').classList.add('active');
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload)
+    });
+
+    generateMultiPDF();
+    showFinalVerificationReport();
+    setTimeout(openWhatsAppMessage, 2000);
+    showError("Report submitted successfully!");
+  } catch (e) {
+    showError("Submission failed. Please try again.");
+    console.error(e);
+  } finally {
+    document.getElementById('loading').classList.remove('active');
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Confirm & Submit via WhatsApp";
+    submitBtn.style.opacity = "1";
+  }
+}
+
+function generateMultiPDF() {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p', 'mm', 'a4');
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const margin = 20;
+  const contentWidth = pageWidth - (margin * 2);
+
+  let pageNumber = 1;
+
+  function addFooter() {
+    pdf.setFontSize(9);
+    pdf.setTextColor(0);
+    pdf.text(
+      `Page ${pageNumber}`,
+      pageWidth - margin,
+      pageHeight - 10,
+      { align: "right" }
+    );
+  }
+
+  function addNewPage() {
+    pdf.addPage();
+    pageNumber++;
+    addFooter();
+  }
+
+  pdf.setFont("times", "bold");
+  pdf.setFontSize(16);
+  pdf.text("CENTRAL RAILWAY", pageWidth / 2, 25, { align: "center" });
+
+  pdf.setFontSize(14);
+  pdf.text("SAFETY INSPECTION REPORT", pageWidth / 2, 33, { align: "center" });
+
+  pdf.setFont("times", "normal");
+  pdf.setFontSize(12);
+  pdf.text("Solapur Division", pageWidth / 2, 40, { align: "center" });
+
+  pdf.line(margin, 45, pageWidth - margin, 45);
+
+  let y = 60;
+
+  pdf.setFont("times", "bold");
+  pdf.text("1. Inspecting Official(s) Details:", margin, y);
+  y += 10;
+
+  pdf.setFont("times", "normal");
+  pdf.text(`Name: ${currentUser.name}`, margin + 5, y);
+  y += 8;
+
+  pdf.text(`Designation & HQ: ${currentUser.designation} (${currentUser.hq})`, margin + 5, y);
+  y += 8;
+
+  pdf.text(`Division: ${currentUser.division}`, margin + 5, y);
+  y += 8;
+
+  pdf.text(`Mobile No.: ${currentUser.phone}`, margin + 5, y);
+  y += 8;
+
+  pdf.text(`Report Generated On: ${new Date().toLocaleString('en-IN')}`, margin + 5, y);
+  y += 15;
+
+  pdf.setFont("times", "bold");
+  pdf.text(`Total Inspections Conducted: ${allInspections.length}`, margin, y);
+
+  addFooter();
+
+  // =============================
+  // INSPECTION PAGES
+  // =============================
+
+  allInspections.forEach((insp, index) => {
+    addNewPage();
+    let y = 25;
+
+    pdf.setFont("times", "bold");
+    pdf.setFontSize(13);
+    pdf.text(`2.${index + 1} Inspection Details`, margin, y);
+    y += 10;
+
+    pdf.setFont("times", "normal");
+    pdf.setFontSize(12);
+
+    pdf.text(`Type of Inspection: ${insp.type}`, margin + 5, y);
+    y += 8;
+
+    pdf.text(`Date of Inspection: ${new Date(insp.date).toLocaleDateString('en-IN')}`, margin + 5, y);
+    y += 10;
+
+    pdf.setFont("times", "bold");
+    pdf.text("Location / Description:", margin + 5, y);
+    y += 8;
+
+    pdf.setFont("times", "normal");
+    const detailLines = pdf.splitTextToSize(insp.specific, contentWidth - 10);
+    pdf.text(detailLines, margin + 5, y);
+    y += detailLines.length * 6 + 8;
+
+    pdf.setFont("times", "bold");
+    pdf.text("Deficiencies Observed:", margin + 5, y);
+    y += 8;
+
+    pdf.setFont("times", "normal");
+
+    if (insp.deficiencies.length === 0) {
+      pdf.text("Nil.", margin + 10, y);
+      y += 10;
+    } else {
+    insp.deficiencies.forEach((d, i) => {
+
+  const defText = `${i + 1}. ${d.text}`;
+  const lines = pdf.splitTextToSize(defText, contentWidth - 15);
+
+  // Calculate required height for deficiency + action line
+  const requiredHeight = (lines.length * 6) + 12;
+
+  // Check page overflow
+  if (y + requiredHeight > pageHeight - 25) {
+    addNewPage();
+    y = 25;
+  }
+
+  // Print deficiency text
+  pdf.setFont("times", "normal");
+  pdf.setFontSize(12);
+
+  pdf.text(lines, margin + 10, y);
+
+  y += lines.length * 6;
+
+  // Print Action By
+  pdf.setFont("times", "italic");
+  pdf.setFontSize(11);
+
+  pdf.text(
+    `Action By: ${d.actionBy.join(', ')}`,
+    margin + 15,
+    y
+  );
+
+  // Restore font
+  pdf.setFont("times", "normal");
+  pdf.setFontSize(12);
+
+  // Proper spacing before next deficiency
+  y += 10;
+
+});
+}
+
+    // Photos Section
+    if (insp.photos.length > 0) {
+      if (y > pageHeight - 70) {
+        addNewPage();
+        y = 25;
+      }
+
+      pdf.setFont("times", "bold");
+      pdf.text("Photos:", margin + 5, y);
+      y += 10;
+
+      let x = margin + 5;
+      const photoWidth = 75;
+      const photoHeight = 55;
+
+      insp.photos.forEach((photo, i) => {
+
+        if (y + photoHeight > pageHeight - 20) {
+          addNewPage();
+          y = 25;
+          x = margin + 5;
+        }
+
+        pdf.addImage(photo.data, "JPEG", x, y, photoWidth, photoHeight);
+
+        x += photoWidth + 10;
+
+        if (i % 2 === 1) {
+          x = margin + 5;
+          y += photoHeight + 12;
+        }
+      });
+    }
+
+    // Signature Block
+    /*if (y > pageHeight - 40) {
+      addNewPage();
+      y = 25;
+    }
+
+    y += 15;
+
+    pdf.line(margin + 5, y, margin + 65, y);
+    y += 6;
+    pdf.text("Signature of Inspecting Official", margin + 5, y);*/
+  });
+
+  pdf.save(
+    `Safety_Inspection_Report_${currentUser.name.replace(/ /g, "_")}_${new Date().toLocaleDateString('en-CA')}.pdf`
+  );
+}
+
+function showFinalVerificationReport() {
+  let html = `
+    <div style="background:white;padding:35px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,0.3);max-width:720px;margin:25px auto;font-family:'Playfair Display', 'Times New Roman', 'Roboto',sans-serif;">
+      <h2 style="text-align:center;color:#0d47a1;font-size:32px;margin:0 0 12px 0;font-weight:bold;">SAFETY INSPECTION REPORT</h2>
+      <p style="text-align:center;color:#c62828;font-weight:bold;font-size:22px;margin:10px 0 30px 0;">Solapur Division • Central Railway</p>
+      <div style="background:#e3f2fd;padding:20px;border-radius:15px;margin-bottom:30px;text-align:center;">
+        <p style="margin:10px 0;font-size:19px;">
+          <strong>Inspector:</strong> ${currentUser.name}<br>
+          <strong>Designation & HQ:</strong> ${currentUser.designation} (${currentUser.hq})<br>
+          <strong>Division:</strong> ${currentUser.division}<br>
+          <strong>Phone:</strong> ${currentUser.phone}
+        </p>
+        <p style="margin:15px 0 0;color:#1565c0;font-weight:bold;font-size:18px;">
+          Submitted on: ${new Date().toLocaleString('en-IN')}
+        </p>
+      </div>
+      <h3 style="text-align:center;color:#1565c0;margin:30px 0 20px;font-size:24px;">
+        Total Inspections: <span style="color:#2e7d32;font-size:30px;font-weight:bold;">${allInspections.length}</span>
+      </h3>`;
+
+  allInspections.forEach((insp, index) => {
+    const serial = index + 1;
+    html += `
+      <div style="border:4px solid #1976d2;border-radius:18px;padding:25px;margin:25px 0;background:#f8fdff;box-shadow:0 8px 25px rgba(25,118,210,0.15);">
+        <h3 style="margin:0 0 18px;color:#0d47a1;font-size:22px;">${serial}. ${insp.type}</h3>
+        <p style="margin:8px 0;font-size:17px;"><strong>Date:</strong> ${new Date(insp.date).toLocaleDateString('en-IN')}</p>
+        <p style="margin:8px 0;font-size:17px;"><strong>Location/Details:</strong> ${insp.specific}</p>
+        <p style="margin:20px 0 15px;font-size:18px;"><strong>Deficiencies Noted:</strong></p>
+        ${insp.deficiencies.length > 0
+          ? '<div style="background:#ffebee;padding:15px;border-radius:12px;border-left:6px solid #c62828;color:#4A148C;word-break:break-word;overflow-wrap:anywhere;white-space:pre-wrap;">' +
+            insp.deficiencies.map((d,i) => `
+              <div style="margin-bottom:12px;">
+                ${i+1}. ${d.text}
+                <div style="font-size:14px;color:#1976d2;margin-top:6px;">Action By: ${d.actionBy.join(', ')}</div>
+              </div>
+            `).join('') +
+            '</div>'
+          : '<p style="color:#2e7d32;font-weight:bold;font-size:18px;background:#e8f5e8;padding:12px;border-radius:12px;">None reported – Excellent work!</p>'
+        }
+        <p style="margin:20px 0 10px;font-size:17px;"><strong>Photos Attached:</strong> ${insp.photos.length} photo(s)</p>
+        ${insp.photos.length > 0 ? `
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:15px;">
+            ${insp.photos.map(photo => `
+              <div style="text-align:center;">
+                <img src="${photo.data}" style="width:100%;height:130px;object-fit:cover;border-radius:12px;border:4px solid #90caf9;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,0.15);"
+                     onclick="window.open(this.src,'_blank')">
+                <p style="margin:8px 0 0;font-size:13px;color:#1565c0;background:#e3f2fd;padding:6px;border-radius:8px;">
+                  <strong>Location:</strong><br>${photo.location}
+                </p>
+              </div>
+            `).join('')}
+          </div>` : '<p style="color:#666;font-style:italic;margin:10px 0;">No photos attached</p>'
+        }
+      </div>`;
+  });
+
+  html += `
+      <div style="text-align:center;margin-top:50px;padding:30px;background:linear-gradient(135deg,#e8f5e8,#e3f2fd);border-radius:20px;">
+        <h2 style="color:#2e7d32;margin:15px 0;font-size:28px;">Submitted Successfully!</h2>
+        <p style="font-size:20px;color:#1565c0;margin:20px 0;">
+          PDF Downloaded • Report Saved • WhatsApp Message Sent
+        </p>
+        <p style="font-size:18px;color:#555;margin:25px 0;">
+          Thank you, <strong>${currentUser.name}</strong> for your valuable contribution to Railway Safety!
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin:25px 0;">
+          <button onclick="generateMultiPDF()" style="background:#d32f2f;color:#fff;padding:18px 40px;font-size:19px;border:none;border-radius:15px;cursor:pointer;box-shadow:0 8px 25px rgba(211,47,47,0.4);font-weight:bold;">
+            Download PDF Again
+          </button>
+          <button onclick="openWhatsAppMessage()" style="background:#25D366;color:#fff;padding:18px 40px;font-size:19px;border:none;border-radius:15px;cursor:pointer;box-shadow:0 8px 25px rgba(37,211,102,0.4);font-weight:bold;">
+            Send via WhatsApp Again
+          </button>
+          <button onclick="location.reload()" style="background:linear-gradient(90deg, #6A11CB, #8E2DE2);color:#fff;padding:18px 40px;font-size:19px;border:none;border-radius:15px;cursor:pointer;box-shadow: 0 8px 25px rgba(110,20,190,0.45);font-weight:bold;">
+            Start New Inspection
+          </button>
+        </div>
+        <p style="margin-top:35px;font-size:15px;color:#777;">
+          Developed with pride by <strong>Safety Department, Solapur Division</strong> • v4.0
+        </p>
+      </div>
+    </div>`;
+
+  document.getElementById('summary').innerHTML = html;
+  document.getElementById('summary').classList.remove('hidden');
+  document.getElementById('finalActions').classList.add('hidden');
+  document.getElementById('step2').classList.add('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+function openWhatsAppMessage() {
+  const inspectionDate = document.getElementById('sessionInspectionDate').value || "Not specified";
+  let message = `*SAFETY INSPECTION REPORT*\n`;
+  message += `_Solapur Division • Central Railway_\n\n`;
+  message += `*Inspecting Official(s):* ${currentUser.name}\n`;
+  message += `*Designation & HQ:* ${currentUser.designation} (${currentUser.hq})\n`;
+  message += `*Date of Inspection:* ${inspectionDate}\n\n`;
+
+  allInspections.forEach((insp, i) => {
+    message += `*${i + 1}. ${insp.type}*\n`;
+    message += `${insp.specific}\n`;
+    if (insp.deficiencies.length > 0) {
+      message += `*Deficiencies:*\n`;
+      insp.deficiencies.forEach((d, defIndex) => {
+        message += `${defIndex + 1}. ${d.text}\n`;
+         if (d.actionBy && d.actionBy.length > 0) {
+    message += `   Action By: ${d.actionBy.join(', ')}\n`;
+  }
+
+      });
+    } else {
+      message += `_No deficiencies found_\n`;
+    }
+    message += `Photos: ${insp.photos.length}`;
+    if (insp.photos.some(p => p.location && !p.location.includes('not captured'))) {
+      message += ` (Geo-tagged)`;
+    }
+    message += `\n\n`;
+  });
+
+  message += `*Division:* ${currentUser.division} • ${currentUser.phone}\n`;
+  message += `*Submitted on:* ${new Date().toLocaleString('en-IN')}\n\n`;
+  message += `*Total Inspections:* ${allInspections.length}\n\n`;
+  message += `\n_Auto-generated via Safety Inspection App_\n`;
+  message += `Safety Department • Solapur Division`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  if (isMobile) {
+    window.location.href = `whatsapp://send?text=${encodedMessage}`;
+  } else {
+    window.open(`https://web.whatsapp.com/send?text=${encodedMessage}`, '_blank');
+  }
+
+  if (isMobile) {
+    const overlay = document.createElement('div');
+    overlay.style = `position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.94);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-family:'Playfair Display','Times New Roman', Arial,sans-serif;text-align:center;padding:20px;`;
+    overlay.innerHTML = `
+      <h2 style="font-size:28px;margin:15px;">Opening WhatsApp...</h2>
+      <p style="font-size:20px;max-width:90%;">Message is ready with full report<br><br>
+         <strong>Just choose who to send → Tap Send</strong>
+      </p>
+      <div style="margin-top:30px;background:#25D366;padding:20px 50px;border-radius:50px;font-size:24px;animation:pulse 1.5s infinite;">
+        Opening WhatsApp
+      </div>
+      <style>@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}</style>
+    `;
+    document.body.appendChild(overlay);
+      ...
+     ...
+      ...
+    setTimeout(() => overlay.remove(), 5000);
+  }
+}
+
+</script>
+<script src="voice-assistant.js"></script>
+</body></html>
